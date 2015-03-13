@@ -6,7 +6,7 @@
 @implementation Appstax
 
 - (void)setupServicesWithAppKey:(NSString *)appKey {
-    [self setupServicesWithAppKey:appKey baseUrl:@"http://appstax.com/api/latest/"];
+    [self setupServicesWithAppKey:appKey baseUrl:@"https://appstax.com/api/latest/"];
 }
 
 - (void)setupServicesWithAppKey:(NSString *)appKey baseUrl:(NSString *)baseUrl {
