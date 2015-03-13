@@ -1,7 +1,13 @@
 
 set -e
 
-CODE_SIGN_IDENTITY_PARAM='CODE_SIGN_IDENTITY="'$CODE_SIGN_IDENTITY'"'
+
+## Initialize variables
+
+CODE_SIGN_IDENTITY_PARAM="A=B" #default can't be ""
+if [ "$CODE_SIGN_IDENTITY" != "" ]; then
+  CODE_SIGN_IDENTITY_PARAM='CODE_SIGN_IDENTITY="'$CODE_SIGN_IDENTITY'"'
+fi
 
 
 ## Clean
@@ -14,7 +20,7 @@ mkdir -p Build/appstax-ios
 ## Build framework
 
 cd Appstax
-xcodebuild build -configuration Release -scheme AppstaxUniversal SYMROOT="../Build/xcodebuild" "$CODE_SIGN_IDENTITY_PARAM" #> ../Build/xcodebuild.log
+xcodebuild build -configuration Release -scheme AppstaxUniversal SYMROOT="../Build/xcodebuild" "$CODE_SIGN_IDENTITY_PARAM"
 cd -
 
 cp -a Build/xcodebuild/Release-universal/Appstax.framework Build/appstax-ios/Appstax.framework
@@ -22,14 +28,14 @@ cp -a Build/xcodebuild/Release-universal/Appstax.framework Build/appstax-ios/App
 
 ## Build examples and starterprojects (verify that they compile OK)
 
-#cd Examples/Notes
-#xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM" #> /dev/null
-#xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM" #> /dev/null
-#cd -
-#cd StarterProjects/Basic
-#xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM" #> /dev/null
-#xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM" #> /dev/null
-#cd -
+cd Examples/Notes
+xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM"
+xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM"
+cd -
+cd StarterProjects/Basic
+xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM"
+xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM"
+cd -
 
 
 ## Copy to Build/appstax-ios
