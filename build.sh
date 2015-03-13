@@ -26,18 +26,6 @@ cd -
 cp -a Build/xcodebuild/Release-universal/Appstax.framework Build/appstax-ios/Appstax.framework
 
 
-## Build examples and starterprojects (verify that they compile OK)
-
-cd Examples/Notes
-xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM"
-xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM"
-cd -
-cd StarterProjects/Basic
-xcodebuild build -configuration Release -sdk iphoneos        "$CODE_SIGN_IDENTITY_PARAM"
-xcodebuild build -configuration Debug   -sdk iphonesimulator "$CODE_SIGN_IDENTITY_PARAM"
-cd -
-
-
 ## Copy to Build/appstax-ios
 
 cp -a StarterProjects Build/appstax-ios/StarterProjects
