@@ -1,6 +1,6 @@
 language: objective-c
 install: ''
-before_script: ./Scripts/add-key.sh
+before_script: ./Scripts/addkey.sh
 script: ./build.sh
 git:
   depth: 1
