@@ -458,16 +458,21 @@
     [AXObject find:@"notes" withId:@"001" completion:^(AXObject *object, NSError *error) {
         file = object[@"attachment"];
         [file loadImageSize:CGSizeMake(200,   0) crop:NO  completion:nil];
+        [NSThread sleepForTimeInterval:0.2];
         [file loadImageSize:CGSizeMake(  0, 300) crop:NO  completion:nil];
+        [NSThread sleepForTimeInterval:0.2];
         [file loadImageSize:CGSizeMake(400, 500) crop:NO  completion:nil];
+        [NSThread sleepForTimeInterval:0.2];
         [file loadImageSize:CGSizeMake(200,   0) crop:YES completion:nil];
+        [NSThread sleepForTimeInterval:0.2];
         [file loadImageSize:CGSizeMake(  0, 300) crop:YES completion:nil];
+        [NSThread sleepForTimeInterval:0.2];
         [file loadImageSize:CGSizeMake(400, 500) crop:YES completion:^(NSError *error) {
             [exp2 fulfill];
         }];
     }];
     
-    [self waitForExpectationsWithTimeout:3 handler:^(NSError *error) {
+    [self waitForExpectationsWithTimeout:10 handler:^(NSError *error) {
         XCTAssertNotNil(file.data);
         XCTAssertTrue([file.data isEqualToData:fileData]);
         XCTAssertEqualObjects(@"http://localhost:3000/images/resize/200/-/notes/001/attachment/clouds.jpg", ((NSURLRequest *)imageRequests[0]).URL.absoluteString);

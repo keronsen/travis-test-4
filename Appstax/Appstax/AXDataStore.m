@@ -104,8 +104,9 @@
 
 - (void)find:(NSString *)collectionName with:(NSDictionary *)propertyValues completion:(void(^)(NSArray *objects, NSError *error))completion {
     AXQuery *query = [AXQuery query];
-    for(NSString *property in propertyValues.keyEnumerator) {
-        [query string:property equals:propertyValues[property]];
+    NSArray *keys = [propertyValues.allKeys sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+    for(NSString *key in keys) {
+        [query string:key equals:propertyValues[key]];
     }
     [self find:collectionName queryString:query.queryString completion:completion];
 }
