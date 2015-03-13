@@ -523,7 +523,7 @@
         }];
     
     [self waitForExpectationsWithTimeout:3 handler:^(NSError *error) {
-        XCTAssertEqualObjects(filterParameter, @"Gender%3D%27Female%27+and+Hometown%3D%27New+York%27");
+        XCTAssertEqualObjects(filterParameter, @"Gelender%3D%27Female%27+and+Hometown%3D%27New+York%27");
     }];
 }
 
