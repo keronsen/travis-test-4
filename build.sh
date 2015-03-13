@@ -12,7 +12,7 @@ mkdir -p Build/appstax-ios
 ## Build framework
 
 cd Appstax
-xcodebuild build -configuration Release -scheme AppstaxUniversal SYMROOT="../Build/xcodebuild" #> ../Build/xcodebuild.log
+xcodebuild build -configuration Release -scheme AppstaxUniversal SYMROOT="../Build/xcodebuild" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO #> ../Build/xcodebuild.log
 cd -
 
 cp -a Build/xcodebuild/Release-universal/Appstax.framework Build/appstax-ios/Appstax.framework
@@ -21,12 +21,12 @@ cp -a Build/xcodebuild/Release-universal/Appstax.framework Build/appstax-ios/App
 ## Build examples and starterprojects (verify that they compile OK)
 
 cd Examples/Notes
-xcodebuild build -configuration Release -sdk iphoneos        #> /dev/null
-xcodebuild build -configuration Debug   -sdk iphonesimulator #> /dev/null
+xcodebuild build -configuration Release -sdk iphoneos        CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO #> /dev/null
+xcodebuild build -configuration Debug   -sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO #> /dev/null
 cd -
 cd StarterProjects/Basic
-xcodebuild build -configuration Release -sdk iphoneos        #> /dev/null
-xcodebuild build -configuration Debug   -sdk iphonesimulator #> /dev/null
+xcodebuild build -configuration Release -sdk iphoneos        CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO #> /dev/null
+xcodebuild build -configuration Debug   -sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO #> /dev/null
 cd -
 
 
